@@ -1,0 +1,14 @@
+{
+   "appDesc": {
+      "description": "The description of the application, displayed in the web store.",
+      "message": "PhishFry helps you detect potential threats and alert you to phishing sites."
+   },
+   "appName": {
+      "description": "The title of the application, displayed in the web store.",
+      "message": "PhishFry"
+   },
+   "appShortName": {
+      "description": "The short title of the application, displayed in the web store.",
+      "message": "Your go-to phishing detector"
+   }
+}
