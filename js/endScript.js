@@ -4,6 +4,9 @@ Array.prototype.diff = function (e) {
 	});
 };
 
+/* URL Normalization (cu, pu, gn): Functions like cu, pu, and gn are used to clean, parse, and normalize URLs by handling protocols, 
+removing unnecessary parts, and ensuring the URL is in a standard format. */
+
 /* cleanURL */
 function cu(str) {
 	var url = str;
@@ -92,6 +95,7 @@ function gn(source, domain) {
 // ==============================================================================================
 // Extract top-domain level, domain and assign a code
 // ==============================================================================================
+/* Domain Extraction and Classification (gd): The script extracts the top-level domain and assigns a classification code to identify different types of domains (e.g., .com, .org). */
 var gd = function (host) {
 	var domainClass = [['.com', 1], ['.info', 1], ['.net', 1], ['.org', 1],
 	['.biz', 2], ['.name', 2], ['.pro', 2], ['.arpa', 3],

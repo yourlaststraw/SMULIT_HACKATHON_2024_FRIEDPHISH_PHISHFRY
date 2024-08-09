@@ -1,5 +1,5 @@
 window.onload = function () {
-	$("#copyright").html("&copy;2013-" + (new Date).getFullYear() + ",&nbsp;PhishDetector&reg;&nbsp;" + chrome.app.getDetails().version)
+	$("#copyright").html(",&nbsp;PhishFry&reg;&nbsp;" + chrome.app.getDetails().version)
 	chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 		chrome.tabs.sendMessage(tabs[0].id, { type: "getFeatures" }, function (response) {
 			var data = { Result: 'Unknown', Confidence: 0, Rule: 0, Info: "PDIE v" + chrome.app.getDetails().version };
@@ -93,6 +93,7 @@ window.onload = function () {
 				if (data.Result == "Phishing") {
 					result = "Based on content review, this page is supposed to be a<span class='domain'>phishing</span>attack or may<span class='domain'>not safe</span>for browsing. <br> " +
 						"Please be careful if you have to submit your sensitive information.";
+						result += "</br></br><a style='color: blue' href='https://eservices1.police.gov.sg/phub/eservices/landingpage/police-report' target='_blank'>Report a cyber crime to Singapore Police Force</a>";
 				}
 				if (data.Result == "Legitimate") {
 					result = "Page domain is: " + "<p class='domain'>";
@@ -101,8 +102,10 @@ window.onload = function () {
 					else
 						result += Domain;
 					result += "</p><br/>";
-					result += "Based on content review, this page is safe for browsing, but it's very important to" +
-						"<b>be careful what you submit to this webpage.</b>";
+					result += "Based on content review, this page is safe for browsing, but it's very important to be careful what you submit to this webpage. <br><br>" +
+    
+    "<a style='color: blue' href='https://eservices1.police.gov.sg/phub/eservices/landingpage/police-report' target='_blank'>Report a cyber crime to Singapore Police Force</a>";
+
 				}
 				if (data.Result == "Unknown") {
 					result = "Unfortunately we couldn't inspect the page which you are browsing. " +
