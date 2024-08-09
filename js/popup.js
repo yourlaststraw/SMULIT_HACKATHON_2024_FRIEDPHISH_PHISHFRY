@@ -93,8 +93,8 @@ window.onload = function () {
 				if (data.Result == "Phishing") {
 					result = "Based on content review, this page is supposed to be a <span class='domain'>phishing</span> attack or may <span class='domain'>not safe</span> for browsing. <br> " +
 						"Please be careful if you have to submit your sensitive information. <br> " +
-						"<a style='color: blue' href='https://eservices1.police.gov.sg/phub/eservices/landingpage/police-report' target='_blank'>Report a cyber crime to Singapore Police Force</a>";
-						"<a style='color: blue' href='https://eservices1.police.gov.sg/phub/eservices/landingpage/police-report' target='_blank'>Use our chatbot for personalised help/a>";
+						"<br><br><a style='color: blue' href='https://eservices1.police.gov.sg/phub/eservices/landingpage/police-report' target='_blank'>Report a cyber crime to Singapore Police Force</a>" +
+						"<br><br><a style='color: blue' href='http://127.0.0.1:5000/' target='_blank'>Use our chatbot for personalised help</a>";
 				}
 				if (data.Result == "Legitimate") {
 					result = "Page domain is: " + "<p class='domain'>";
