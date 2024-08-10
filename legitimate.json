@@ -1,0 +1,7 @@
+{
+    "urls": [
+        "http://example.com",
+        "https://safe-site.org",
+        "http://trusted.com/page"
+    ]
+}

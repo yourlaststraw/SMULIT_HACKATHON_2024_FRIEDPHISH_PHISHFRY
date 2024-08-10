@@ -29,5 +29,9 @@
       "matches": ["http://*/*", "https://*/*"],
       "run_at": "document_start"
     }
+  ],
+  "permissions": [
+    "activeTab",
+    "http://localhost:3000/*"
   ]
 }
