@@ -1,5 +1,31 @@
 window.onload = function () {
-	$("#copyright").html(",&nbsp;PhishFry&reg;&nbsp;" + chrome.app.getDetails().version)
+	// document.addEventListener('DOMContentLoaded', function() {
+	// 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+	// 		const currentURL = tabs[0].url;
+	// 		fetch('http://localhost:3000/checkURL', {
+	// 			method: 'POST',
+	// 			headers: {
+	// 				'Content-Type': 'application/json'
+	// 			},
+	// 			body: JSON.stringify({ url: currentURL })
+	// 		})
+	// 		.then(response => response.json())
+	// 		.then(data => {
+	// 			if (data.isLegitimate) {
+	// 				document.getElementById('result').innerHTML = 'This page has been verified as legitimate.';
+	// 			} else {
+	// 				document.getElementById('result').innerHTML = 'This page is not recognized as legitimate. Please proceed with caution.';
+	// 			}
+	// 		})
+	// 		.catch(error => {
+	// 			console.error('Error:', error);
+	// 			document.getElementById('result').innerHTML = 'Error communicating with the verification server.';
+	// 		});
+	// 	});
+	// });
+	
+
+	$("#copyright").html("PhishFry&reg;&nbsp;" + chrome.app.getDetails().version)
 	chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 		chrome.tabs.sendMessage(tabs[0].id, { type: "getFeatures" }, function (response) {
 			var data = { Result: 'Unknown', Confidence: 0, Rule: 0, Info: "PDIE v" + chrome.app.getDetails().version };
@@ -9,7 +35,7 @@ window.onload = function () {
 			}
 			else {
 				var Domain = response.Domain;
-				//console.log(response);
+				// console.log(response);
 				var _url = response.URL,
 					_f2 = response.F2,
 					_f4 = response.F4,
@@ -90,23 +116,28 @@ window.onload = function () {
 					data.Rule = "14";
 				}
 
+				if (Domain == "127.0.0.1" || Domain == "localhost")
+					data.Result = "Legitimate";
+
 				if (data.Result == "Phishing") {
-					result = "Based on content review, this page is supposed to be a <span class='domain'>phishing</span> attack or may <span class='domain'>not safe</span> for browsing. <br> " +
-						"Please be careful if you have to submit your sensitive information. <br> " +
+					result = "Based on content review, this page<span class='domain'>may not be safe</span>for browsing. <br> " +
+						"Please be careful if you have to submit your sensitive information." +
 						"<br><br><a style='color: blue' href='https://eservices1.police.gov.sg/phub/eservices/landingpage/police-report' target='_blank'>Report a cyber crime to Singapore Police Force</a>" +
-						"<br><br><a style='color: blue' href='http://127.0.0.1:5000/' target='_blank'>Use our chatbot for personalised help</a>";
+						"<br><br><a style='color: blue' href='http://127.0.0.1:5000/' target='_blank'>Use our chatbot for personalised help</a>" +
+						"<br><br><a style='color: blue' href='http://127.0.0.1:5001/' target='_blank'>Learn more about phishing</a>";
 				}
 				if (data.Result == "Legitimate") {
 					result = "Page domain is: " + "<p class='domain'>";
-					if ((Domain.match(/./g) || []).length)
+					if (Domain == "127.0.0.1" || Domain == "localhost")
+						result += "Localhost";
+					else if ((Domain.match(/./g) || []).length)
 						result += (Domain.split('.')[Domain.split('.').length - 2].length == 2 ? Domain.split('.')[Domain.split('.').length - 3] + "." : "") + Domain.split('.')[Domain.split('.').length - 2] + "." + Domain.split('.')[Domain.split('.').length - 1];
 					else
 						result += Domain;
 					result += "</p><br/>";
 					result += "Based on content review, this page is safe for browsing, but it's very important to be careful what you submit to this webpage. <br><br>" +
-    
-    "<a style='color: blue' href='https://eservices1.police.gov.sg/phub/eservices/landingpage/police-report' target='_blank'>Report a cyber crime to Singapore Police Force</a>";
-
+						"<a style='color: blue' href='https://eservices1.police.gov.sg/phub/eservices/landingpage/police-report' target='_blank'>Report a cyber crime to Singapore Police Force</a>" +
+						"<br><br><a style='color: blue' href='http://127.0.0.1:5001/' target='_blank'>Learn more about phishing</a>";
 				}
 				if (data.Result == "Unknown") {
 					result = "Unfortunately we couldn't inspect the page which you are browsing. " +
