@@ -137,7 +137,7 @@ window.onload = function () {
 					result += "</p><br/>";
 					result += "Based on content review, this page is safe for browsing, but it's very important to be careful what you submit to this webpage. <br><br>" +
 						"<a style='color: blue' href='https://eservices1.police.gov.sg/phub/eservices/landingpage/police-report' target='_blank'>Report a cyber crime to Singapore Police Force</a>" +
-						"<br><br><a style='color: blue' href='http://127.0.0.1:5001/' target='_blank'>Learn more about phishing</a>";
+						"<br><br><a style='color: blue' href='http://127.0.0.1:5501/Education/templates/index.html#' target='_blank'>Learn more about phishing</a>";
 				}
 				if (data.Result == "Unknown") {
 					result = "Unfortunately we couldn't inspect the page which you are browsing. " +
